@@ -1,0 +1,50 @@
+<main class="min-h-screen px-6 py-12">
+
+  <section class="max-w-[400px] mx-auto">
+    <figure>
+      <svg class="mx-auto" width="33" height="27" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m26.463.408 3.2 6.4h-4.8l-3.2-6.4h-3.2l3.2 6.4h-4.8l-3.2-6.4h-3.2l3.2 6.4h-4.8l-3.2-6.4h-1.6a3.186 3.186 0 0 0-3.184 3.2l-.016 19.2a3.2 3.2 0 0 0 3.2 3.2h25.6a3.2 3.2 0 0 0 3.2-3.2V.408h-6.4Z"
+          fill="#FC4747" />
+      </svg>
+    </figure>
+
+    <article class="bg-background-secondary rounded-[10px] p-6 mt-[58.4px]">
+      <h1 class="heading-l">Login</h1>
+
+      <form class="mt-10 mb-6" #loginForm="ngForm" (ngSubmit)="login()">
+        <div class="grid gap-6 mb-10">
+
+          <div class="form-input" [ngClass]="{'fail': emailModel.invalid && emailModel.touched || error,}">
+
+            <input [(ngModel)]="email" #emailModel="ngModel" type="email" name="email" id="email"
+              placeholder="Email address" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+
+            <p *ngIf="!emailModel.valid && emailModel.touched || error" class="text-accent description">Cant't be empty
+            </p>
+
+          </div>
+
+          <div class="form-input" [ngClass]="{'fail': passwordModel.invalid && passwordModel.touched || error,}">
+            <input [(ngModel)]="password" #passwordModel="ngModel" type="password" name="password" id="password"
+              placeholder="Password" required>
+            <p *ngIf="!passwordModel.valid && passwordModel.touched || error" class="text-accent description">Cant't be
+              empty</p>
+          </div>
+
+          <p *ngIf="userNotExists" class="text-accent description">User not found</p>
+        </div>
+
+
+        <button type="submit" class="btn">Login
+          to
+          your account</button>
+      </form>
+
+      <p class="description text-center">Don’t have an account? <span class="text-accent cursor-pointer"
+          routerLink="/sign-in">Sign Up</span>
+      </p>
+    </article>
+  </section>
+
+</main>
