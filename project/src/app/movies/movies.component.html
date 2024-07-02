@@ -1,1 +1,18 @@
-<p>movies works!</p>
+<section class="px-4 pb-10">
+  <h2 class="text-[20px] my-6 font-light tracking-[-0.31px]">Movies</h2>
+  <!-- When the Movies are load display the results but if theres is no results show the @else message -->
+  <!-- State of loading -->
+  @if(!moviesLoaded){
+  <app-loader [GetContainer]="2" />
+
+  <!-- Load the results if any are fetched -->
+  }@else if (movies.length != 0 && moviesLoaded) {
+  <article class="animate-fade-in grid grid-cols-2 gap-[15px]">
+    <app-recommended *ngFor="let movie of movies" [GetInfo]="movie" />
+  </article>
+
+  <!-- Warning message if the aren't found any movies -->
+  }@else{
+  <p class="text-[15px] text-white/50 mt-4">No movies found!</p>
+  }
+</section>

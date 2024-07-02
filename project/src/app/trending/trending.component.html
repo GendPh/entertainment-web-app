@@ -1,25 +1,38 @@
+<!-- This Component will load the information about the trending and recommended movies or tv-series  -->
 <section class="pl-4">
   <h2 class="text-[20px] font-light tracking-[-0.31px] mb-4">Trending</h2>
 
+  <!-- When the trending are load display the results but if theres is no results show the @else message -->
+  <!-- State of loading -->
   @if(!trendingLoaded){
   <app-loader />
+
+  <!-- Load the results if any are fetched -->
   }@else if (trendingInfo.length != 0 && trendingLoaded) {
   <article class="animate-fade-in w-full overflow-x-scroll flex gap-4 snap-x pr-4 no-scrollbar">
     <app-trending-movie *ngFor="let trending of trendingInfo" [GetInfo]="trending" />
   </article>
+
+  <!-- Warning message if the aren't found any trending -->
   }@else{
-  <p class="text-[15px] text-white/50 mt-4">No trending movies found!</p>
+  <p class="text-[15px] text-white/50 mt-4">No trending found!</p>
   }
 </section>
 
 <section class="px-4 pb-10">
   <h2 class="text-[20px] my-6 font-light tracking-[-0.31px]">Recommended for you</h2>
+  <!-- When the recommended are load display the results but if theres is no results show the @else message -->
+  <!-- State of loading -->
   @if(!recommendLoaded){
   <app-loader [GetContainer]="1" />
+
+  <!-- Load the results if any are fetched -->
   }@else if (recommendedInfo.length != 0 && recommendLoaded) {
   <article class="animate-fade-in grid grid-cols-2 gap-[15px]">
     <app-recommended *ngFor="let recommended of recommendedInfo" [GetInfo]="recommended" />
   </article>
+
+  <!-- Warning message if the aren't found any recommendations -->
   }@else{
   <p class="text-[15px] text-white/50 mt-4">No recommendations found!</p>
   }

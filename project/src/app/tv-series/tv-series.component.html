@@ -1,1 +1,18 @@
-<p>tv-series works!</p>
+<section class="px-4 pb-10">
+  <h2 class="text-[20px] my-6 font-light tracking-[-0.31px]">Tv Series</h2>
+  <!-- When the Tv Series are load display the results but if theres is no results show the @else message -->
+  <!-- State of loading -->
+  @if(!tvSeriesLoaded){
+  <app-loader [GetContainer]="3" />
+
+  <!-- Load the results if any are fetched -->
+  }@else if (tvSeries.length != 0 && tvSeriesLoaded) {
+  <article class="animate-fade-in grid grid-cols-2 gap-[15px]">
+    <app-recommended *ngFor="let series of tvSeries" [GetInfo]="series" />
+  </article>
+
+  <!-- Warning message if the aren't found any tv series -->
+  }@else{
+  <p class="text-[15px] text-white/50 mt-4">No tv series found!</p>
+  }
+</section>

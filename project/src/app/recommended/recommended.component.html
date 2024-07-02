@@ -4,7 +4,7 @@
       class="w-full h-full rounded-lg">
   </figure>
 
-  <app-bookmark-button />
+  <app-bookmark-button [GetTitle]="info?.title" [CheckMarked]="info?.isBookmarked" />
 
   <app-details [GetDetails]="details" />
 </div>
