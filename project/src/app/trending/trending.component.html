@@ -1,0 +1,26 @@
+<section class="pl-4">
+  <h2 class="text-[20px] font-light tracking-[-0.31px] mb-4">Trending</h2>
+
+  @if(!trendingLoaded){
+  <app-loader />
+  }@else if (trendingInfo.length != 0 && trendingLoaded) {
+  <article class="animate-fade-in w-full overflow-x-scroll flex gap-4 snap-x pr-4 no-scrollbar">
+    <app-trending-movie *ngFor="let trending of trendingInfo" [GetInfo]="trending" />
+  </article>
+  }@else{
+  <p class="text-[15px] text-white/50 mt-4">No trending movies found!</p>
+  }
+</section>
+
+<section class="px-4 pb-10">
+  <h2 class="text-[20px] my-6 font-light tracking-[-0.31px]">Recommended for you</h2>
+  @if(!recommendLoaded){
+  <app-loader [GetContainer]="1" />
+  }@else if (recommendedInfo.length != 0 && recommendLoaded) {
+  <article class="animate-fade-in grid grid-cols-2 gap-[15px]">
+    <app-recommended *ngFor="let recommended of recommendedInfo" [GetInfo]="recommended" />
+  </article>
+  }@else{
+  <p class="text-[15px] text-white/50 mt-4">No recommendations found!</p>
+  }
+</section>

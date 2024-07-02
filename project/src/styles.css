@@ -6,6 +6,7 @@
 @layer base {
   body {
     font-family: 'Outfit', sans-serif;
+
     @apply bg-background-primary text-text;
   }
 
@@ -22,6 +23,20 @@
       @apply pl-4 pb-[18px] caret-accent description bg-transparent outline-none flex-grow;
     }
   }
+  #search-form {
+    .input {
+      @apply relative focus-within:after:bg-background-accent;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -14px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        @apply transition-colors duration-300;
+      }
+    }
+  }
 }
 
 @layer components {
@@ -34,5 +49,49 @@
   }
   .btn {
     @apply w-full bg-accent py-[14px] rounded-md transition-colors hover:bg-text hover:text-background-secondary duration-150;
+  }
+  .custom-list-marker::marker {
+    color: rgba(255, 255, 255, 0.5); /* Change this to your desired color */
+  }
+
+  .hover-svg {
+    @apply bg-background-primary/50 text-white transition-transform duration-300 hover:bg-white hover:text-background-primary;
+    svg {
+      @apply stroke-background-primary;
+    }
+  }
+
+  .trending-movie::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    background: rgb(0, 0, 0);
+    background: -moz-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.01) 100%
+    );
+    background: -webkit-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.01) 100%
+    );
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.01) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1);
+
+    @apply rounded-lg;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for WebKit browsers */
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
   }
 }

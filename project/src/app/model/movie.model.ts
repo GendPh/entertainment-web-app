@@ -2,6 +2,13 @@ export interface DB {
   movies: Movie[];
 }
 
+export interface Details {
+  title: string,
+  year: number,
+  category: string,
+  rating: string,
+}
+
 export interface Movie {
   title: string;
   thumbnail: Thumbnail;

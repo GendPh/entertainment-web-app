@@ -32,14 +32,17 @@
               empty</p>
           </div>
 
-          <div class="form-input" [ngClass]="{'fail': repeatPasswordModel.invalid && repeatPasswordModel.touched || error,}">
-            <input [(ngModel)]="repeatPassword" #repeatPasswordModel="ngModel" type="password" name="repeat-password" id="repeat-password"
-              placeholder="Repeat password" required>
-            <p *ngIf="!repeatPasswordModel.valid && repeatPasswordModel.touched || error" class="text-accent description">Cant't be
+          <div class="form-input"
+            [ngClass]="{'fail': repeatPasswordModel.invalid && repeatPasswordModel.touched || error,}">
+            <input [(ngModel)]="repeatPassword" #repeatPasswordModel="ngModel" type="password" name="repeat-password"
+              id="repeat-password" placeholder="Repeat password" required>
+            <p *ngIf="!repeatPasswordModel.valid && repeatPasswordModel.touched || error"
+              class="text-accent description">Cant't be
               empty</p>
           </div>
 
           <p *ngIf="userAlreadyExists" class="text-accent description">User already exists</p>
+          <p *ngIf="failedRegister" class="text-accent description">Something went wrong please try again later.</p>
         </div>
 
 

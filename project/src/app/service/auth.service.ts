@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 import { User, UserLogged } from '../model/user.model';
-import { Observable, map } from 'rxjs';
+import { Observable, map, mergeMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -41,25 +41,49 @@ export class AuthService {
     )
   }
 
+  // Method to create a new user in the database
   public createUser(user: User): Observable<boolean> {
-    return this.http.post<User>(this.userUrl, user).pipe(
-      map((user: User) => {
-        if (localStorage.getItem('user-movies') == null) {
-          localStorage.setItem('user-movies', JSON.stringify(user));
+    // Check if the user already exists in the database
+    return this.http.get<User[]>(this.userUrl + `?email=${user.email}`).pipe(
+      // If the user exists, throw an error message saying that the user already exists
+      mergeMap((users: User[]) => {
+        if (users.length > 0) {
+          throw new Error('User already exists');
         } else {
-          localStorage.removeItem('user-movies');
-          localStorage.setItem('user-movies', JSON.stringify(user));
+          // If the user does not exist, create the user in the database
+          return this.http.post<User>(this.userUrl, user).pipe(
+            map((user: User) => {
+              this.setUpLocalStorage(user.email);
+              return true;
+            })
+          );
         }
-
-        this.user.update((_) => user);
-
-        return true;
       })
-    )
+    );
   }
 
+  // Method to log the user out
   public logUserOut(): void {
+    // Remove the user-movies key from the local storage
     localStorage.removeItem('user-movies');
+    // Update the user signal with null
     this.user.update((_) => null);
+  }
+
+  // Method to set up the local storage with the user email that is logged in
+  private setUpLocalStorage(userEmail: string): void {
+    // Variable userEmail is the email of the user that is logged in
+    const userLogged: UserLogged = { email: userEmail };
+    // Check if the user-movies key exists in the local storage
+    if (localStorage.getItem('user-movies') == null) {
+      // If it does not exist, create it and add the userLogged object
+      localStorage.setItem('user-movies', JSON.stringify(userLogged));
+    } else {
+      // If it exists, remove it and add the userLogged object
+      localStorage.removeItem('user-movies');
+      localStorage.setItem('user-movies', JSON.stringify(userLogged));
+    }
+    // Update the user signal with the userLogged object
+    this.user.update((_) => userLogged);
   }
 }

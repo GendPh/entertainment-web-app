@@ -12,9 +12,11 @@ export class MoviesService {
 
   constructor(private http: HttpClient) { }
 
-  getMovies(): Observable<Movie[]> {
-
+  getAll(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.url);
+  }
 
+  getTrendingMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.url + "?isTrending=true");
   }
 }

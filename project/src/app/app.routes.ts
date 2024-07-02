@@ -3,6 +3,10 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { authGuard, authGuardForLogin } from './guard/auth.guard';
+import { TrendingComponent } from './trending/trending.component';
+import { MoviesComponent } from './movies/movies.component';
+import { TvSeriesComponent } from './tv-series/tv-series.component';
+import { BookMarkedComponent } from './book-marked/book-marked.component';
 
 export const routes: Routes = [
   {
@@ -10,6 +14,20 @@ export const routes: Routes = [
     component: HomeComponent,
     title: 'Home',
     canActivate: [authGuard],
+    children: [
+      {
+        path: "", component: TrendingComponent, title: "Trending"
+      },
+      {
+        path: "movies", component: MoviesComponent, title: "Movies"
+      },
+      {
+        path: "tv-series", component: TvSeriesComponent, title: "Tv Series"
+      },
+      {
+        path: "bookmark", component: BookMarkedComponent, title: "Bookmarked"
+      }
+    ]
   },
   {
     path: 'login',

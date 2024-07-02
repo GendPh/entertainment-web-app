@@ -1,0 +1,13 @@
+<div class="trending-movie block w-[240px] h-[140px] rounded-lg relative bg-background-secondary snap-start">
+  <img class="absolute inset-0 rounded-lg" [src]="'../.' + info?.thumbnail?.trending?.small"
+    [alt]="info?.title + ' thumbnail'">
+
+  <app-bookmark-button [GetTitle]="info?.title" [CheckMarked]="info?.isBookmarked" />
+
+  <div class="relative z-10 h-full flex justify-start items-end">
+    <div class="p-4">
+      <app-details [GetDetails]="details" />
+    </div>
+  </div>
+
+</div>

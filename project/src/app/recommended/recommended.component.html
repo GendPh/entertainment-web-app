@@ -1,0 +1,10 @@
+<div class="relative">
+  <figure class="pointer-events-none block w-full h-[110px] bg-background-secondary rounded-lg relative mb-2">
+    <img [src]="'../.' + info?.thumbnail?.regular?.small" [alt]="info?.title + ' thumbnail'"
+      class="w-full h-full rounded-lg">
+  </figure>
+
+  <app-bookmark-button />
+
+  <app-details [GetDetails]="details" />
+</div>
