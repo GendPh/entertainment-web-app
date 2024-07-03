@@ -1,6 +1,6 @@
 <!-- This Component will load the information about the trending and recommended movies or tv-series  -->
 <section class="pl-4">
-  <h2 class="text-[20px] font-light tracking-[-0.31px] mb-4">Trending</h2>
+  <h2 class="heading-m md:heading-l mb-4">Trending</h2>
 
   <!-- When the trending are load display the results but if theres is no results show the @else message -->
   <!-- State of loading -->
@@ -9,7 +9,7 @@
 
   <!-- Load the results if any are fetched -->
   }@else if (trendingInfo.length != 0 && trendingLoaded) {
-  <article class="animate-fade-in w-full overflow-x-scroll flex gap-4 snap-x pr-4 no-scrollbar">
+  <article class="animate-fade-in w-full overflow-x-scroll flex gap-4 md:gap-10 snap-x pr-4 no-scrollbar select-none">
     <app-trending-movie *ngFor="let trending of trendingInfo" [GetInfo]="trending" />
   </article>
 
@@ -19,8 +19,8 @@
   }
 </section>
 
-<section class="px-4 pb-10">
-  <h2 class="text-[20px] my-6 font-light tracking-[-0.31px]">Recommended for you</h2>
+<section class="px-4 pb-10 ">
+  <h2 class="heading-m md:heading-l my-6 md:mt-[39px]">Recommended for you</h2>
   <!-- When the recommended are load display the results but if theres is no results show the @else message -->
   <!-- State of loading -->
   @if(!recommendLoaded){
@@ -28,7 +28,7 @@
 
   <!-- Load the results if any are fetched -->
   }@else if (recommendedInfo.length != 0 && recommendLoaded) {
-  <article class="animate-fade-in grid grid-cols-2 gap-[15px]">
+  <article class="movies-container">
     <app-recommended *ngFor="let recommended of recommendedInfo" [GetInfo]="recommended" />
   </article>
 

@@ -2,6 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { User, UserLogged } from '../model/user.model';
 import { Observable, map, mergeMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthService {
   public user = signal<UserLogged | null>(null);
   private userUrl: string = "https://json-server-deploy-kk18.onrender.com/user-movies";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   public isUserLoggedIn(): boolean {
     const userLogged: UserLogged = JSON.parse(localStorage.getItem('user-movies') || 'null');
@@ -68,6 +69,8 @@ export class AuthService {
     localStorage.removeItem('user-movies');
     // Update the user signal with null
     this.user.update((_) => null);
+    //
+    this.router.navigate(['/login']);
   }
 
   // Method to set up the local storage with the user email that is logged in

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from '../model/movie.model';
 
@@ -42,5 +42,16 @@ export class MoviesService {
   // Get only the marked tv-series from the server.
   getMarkedTvSeries(): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.url + "?isBookmarked=true");
+  }
+
+  // Get the movie or tv-series by name.
+  getByName(name: string): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.url + `?title_like=${name}`);
+  }
+
+  //set the movie or tv-series as bookmarked.
+  setBookmark(movie: Movie): Observable<Movie> {
+    movie.isBookmarked = !movie.isBookmarked;
+    return this.http.put<Movie>(this.url + `/${movie.id}`, movie);
   }
 }

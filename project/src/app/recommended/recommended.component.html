@@ -1,10 +1,28 @@
 <div class="relative">
-  <figure class="pointer-events-none block w-full h-[110px] bg-background-secondary rounded-lg relative mb-2">
+  <figure
+    class="block w-full h-[110px] md:h-[140px] lg:h-[174px] bg-background-secondary rounded-lg relative mb-2 group">
     <img [src]="'../.' + info?.thumbnail?.regular?.small" [alt]="info?.title + ' thumbnail'"
-      class="w-full h-full rounded-lg">
+      class="pointer-events-none w-full h-full rounded-lg md:hidden">
+    <img [src]="'../.' + info?.thumbnail?.regular?.medium" [alt]="info?.title + ' thumbnail'"
+      class="pointer-events-none w-full h-full rounded-lg hidden md:block lg:hidden">
+    <img [src]="'../.' + info?.thumbnail?.regular?.medium" [alt]="info?.title + ' thumbnail'"
+      class="pointer-events-none w-full h-full rounded-lg hidden lg:block">
+
+    <div
+      class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 transition-opacity duration-150 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto rounded-lg ">
+      <span class="flex items-center gap-[19px] bg-white/25 p-[9px] rounded-full cursor-pointer">
+        <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M15 0C6.713 0 0 6.713 0 15c0 8.288 6.713 15 15 15 8.288 0 15-6.712 15-15 0-8.287-6.712-15-15-15Zm-3 21V8l9 6.5-9 6.5Z"
+            fill="#FFF" />
+        </svg>
+        Play
+      </span>
+    </div>
+
+    <app-bookmark-button [GetData]="info" />
   </figure>
 
-  <app-bookmark-button [GetTitle]="info?.title" [CheckMarked]="info?.isBookmarked" />
 
   <app-details [GetDetails]="details" />
 </div>

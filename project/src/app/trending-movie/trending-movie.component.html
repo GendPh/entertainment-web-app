@@ -1,11 +1,26 @@
-<div class="trending-movie block w-[240px] h-[140px] rounded-lg relative bg-background-secondary snap-start">
-  <img class="absolute inset-0 rounded-lg" [src]="'../.' + info?.thumbnail?.trending?.small"
+<div
+  class="trending-movie block w-[240px] h-[140px] md:w-[470px] md:h-[230px] rounded-lg relative bg-background-secondary snap-start group">
+  <img class="absolute inset-0 rounded-lg md:hidden" [src]="'../.' + info?.thumbnail?.trending?.small"
+    [alt]="info?.title + ' thumbnail'">
+  <img class="absolute inset-0 rounded-lg hidden md:block" [src]="'../.' + info?.thumbnail?.trending?.large"
     [alt]="info?.title + ' thumbnail'">
 
-  <app-bookmark-button [GetTitle]="info?.title" [CheckMarked]="info?.isBookmarked" />
+  <app-bookmark-button [GetData]="info" />
 
-  <div class="relative z-10 h-full flex justify-start items-end">
-    <div class="p-4">
+  <div
+    class="absolute inset-0 z-10 bg-black/50 flex items-center justify-center opacity-0 transition-opacity duration-150 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto rounded-lg ">
+    <span class="flex items-center gap-[19px] bg-white/25 p-[9px] rounded-full cursor-pointer">
+      <svg width="30" height="30" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M15 0C6.713 0 0 6.713 0 15c0 8.288 6.713 15 15 15 8.288 0 15-6.712 15-15 0-8.287-6.712-15-15-15Zm-3 21V8l9 6.5-9 6.5Z"
+          fill="#FFF" />
+      </svg>
+      Play
+    </span>
+  </div>
+
+  <div class="relative z-[5] h-full flex justify-start items-end">
+    <div class="p-4 md:p-6">
       <app-details [GetDetails]="details" />
     </div>
   </div>

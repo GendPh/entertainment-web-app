@@ -1,5 +1,5 @@
 <section class="px-4">
-  <h2 class="text-[20px] my-6 font-light tracking-[-0.31px]">Bookmarked Movies</h2>
+  <h2 class="heading-m md:heading-l mb-4">Bookmarked Movies</h2>
   <!-- When the Movies are load display the results but if theres is no results show the @else message -->
   <!-- State of loading -->
   @if(!markedMoviesLoaded){
@@ -7,7 +7,7 @@
 
   <!-- Load the results if any are fetched -->
   }@else if (markedMovies.length != 0 && markedMoviesLoaded) {
-  <article class="animate-fade-in grid grid-cols-2 gap-[15px]">
+  <article class="movies-container">
     <app-recommended *ngFor="let movie of markedMovies" [GetInfo]="movie" />
   </article>
 
@@ -18,7 +18,7 @@
 </section>
 
 <section class="px-4 pb-10 ">
-  <h2 class="text-[20px] my-6 font-light tracking-[-0.31px]">Bookmarked TV Series</h2>
+  <h2 class="heading-m md:heading-l my-6">Bookmarked TV Series</h2>
   <!-- When the Movies are load display the results but if theres is no results show the @else message -->
   <!-- State of loading -->
   @if(!markedSeriesLoaded){
@@ -26,7 +26,7 @@
 
   <!-- Load the results if any are fetched -->
   }@else if (markedSeries.length != 0 && markedSeriesLoaded) {
-  <article class="animate-fade-in grid grid-cols-2 gap-[15px]">
+  <article class="movies-container">
     <app-recommended *ngFor="let series of markedSeries" [GetInfo]="series" />
   </article>
 

@@ -16,16 +16,29 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {
-        path: "", component: TrendingComponent, title: "Trending"
+        path: '',
+        redirectTo: 'trending',
+        pathMatch: 'full'
       },
       {
-        path: "movies", component: MoviesComponent, title: "Movies"
+        path: 'trending',
+        component: TrendingComponent,
+        title: 'Trending'
       },
       {
-        path: "tv-series", component: TvSeriesComponent, title: "Tv Series"
+        path: 'movies',
+        component: MoviesComponent,
+        title: 'Movies'
       },
       {
-        path: "bookmark", component: BookMarkedComponent, title: "Bookmarked"
+        path: 'tv-series',
+        component: TvSeriesComponent,
+        title: 'Tv Series'
+      },
+      {
+        path: 'bookmark',
+        component: BookMarkedComponent,
+        title: 'Bookmarked'
       }
     ]
   },

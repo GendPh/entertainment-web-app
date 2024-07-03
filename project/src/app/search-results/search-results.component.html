@@ -1,0 +1,16 @@
+<section class="px-4 animate-fade-in">
+  <h2 class="heading-m my-6">Found {{searchService.searchResults()?.length}} results for
+    '{{searchService.searchValue()}}'</h2>
+
+  <!-- @if(searchService.searchResults().length != 0) -->
+  @if(searchService.searchLoading()){
+  <app-loader [GetContainer]="6" />
+  }@else if(!searchService.searchLoading() && searchService.searchResults()?.length != 0){
+  <article class="movies-container">
+    <app-recommended [GetInfo]="result" *ngFor="let result of searchService.searchResults()" />
+  </article>
+  }@else {
+  <p class="text-[15px] text-white/50 mt-4 animate-fade-in">No results found for '{{searchService.searchValue()}}'</p>
+  }
+
+</section>

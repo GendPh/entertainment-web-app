@@ -1,15 +1,14 @@
-<div>
+<div class="lg:flex">
 
   <app-header />
 
-  <main>
+  <main class="overflow-x-hidden">
 
     <app-search />
 
-    <router-outlet />
+    <router-outlet *ngIf="searchService.searchResults() == null" />
 
-    <section>
-      search works!
-    </section>
+    <app-search-results *ngIf="searchService.searchResults() != null" />
+
   </main>
 </div>

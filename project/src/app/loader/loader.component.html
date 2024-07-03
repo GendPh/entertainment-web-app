@@ -1,4 +1,4 @@
-<article class="flex items-center justify-center animate-fade-in">
+<article class="flex items-center justify-center animate-fade-in w-full">
   <l-bouncy-arc *ngIf="LoaderContainer == 0" size="70" [speed]="speed" [color]="color"></l-bouncy-arc>
 
   <l-hourglass *ngIf="LoaderContainer == 1" size="40" bg-opacity="0.1" [speed]="speed" [color]="color"></l-hourglass>
@@ -10,4 +10,6 @@
   <l-mirage *ngIf="LoaderContainer == 4" size="60" [speed]="speed" [color]="color"></l-mirage>
 
   <l-pinwheel *ngIf="LoaderContainer == 5" size="35" stroke="3.5" [speed]="speed" [color]="color"></l-pinwheel>
+
+  <l-hatch *ngIf="LoaderContainer == 6" size="28" stroke="4" [speed]="speed" [color]="color"></l-hatch>
 </article>

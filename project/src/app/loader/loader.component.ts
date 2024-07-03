@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, Component, Input, OnInit } from '@angular/core';
-import { bouncyArc, hourglass, helix, leapfrog, mirage, pinwheel } from 'ldrs'
+import { bouncyArc, hourglass, helix, leapfrog, mirage, pinwheel, hatch } from 'ldrs'
 
 @Component({
   selector: 'app-loader',
@@ -11,6 +11,7 @@ import { bouncyArc, hourglass, helix, leapfrog, mirage, pinwheel } from 'ldrs'
 })
 export class LoaderComponent implements OnInit {
 
+  
   @Input("GetContainer") LoaderContainer: number = 0;
 
   color: string = "white";
@@ -23,6 +24,7 @@ export class LoaderComponent implements OnInit {
     leapfrog.register();
     mirage.register();
     pinwheel.register();
+    hatch.register();
   }
 }
 
