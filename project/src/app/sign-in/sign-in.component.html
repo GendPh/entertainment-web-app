@@ -46,6 +46,10 @@
         </div>
 
 
+        <span *ngIf="loading">
+          <app-loader />
+        </span>
+
         <button type="submit" class="btn">Create an account</button>
       </form>
 

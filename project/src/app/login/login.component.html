@@ -20,23 +20,27 @@
             <input [(ngModel)]="email" #emailModel="ngModel" type="email" name="email" id="email"
               placeholder="Email address" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
 
-            <p *ngIf="!emailModel.valid && emailModel.touched || error" class="text-accent description">Cant't be empty</p>
+            <p *ngIf="!emailModel.valid && emailModel.touched || error" class="text-accent description">Cant't be empty
+            </p>
 
           </div>
 
           <div class="form-input" [ngClass]="{'fail': passwordModel.invalid && passwordModel.touched || error,}">
             <input [(ngModel)]="password" #passwordModel="ngModel" type="password" name="password" id="password"
               placeholder="Password" required>
-            <p *ngIf="!passwordModel.valid && passwordModel.touched || error" class="text-accent description">Cant't be empty</p>
+            <p *ngIf="!passwordModel.valid && passwordModel.touched || error" class="text-accent description">Cant't be
+              empty</p>
           </div>
 
           <p *ngIf="userNotExists" class="text-accent description">Email or Password failed</p>
         </div>
 
 
-        <button type="submit" class="btn">Login
-          to
-          your account</button>
+        <span *ngIf="loading">
+          <app-loader />
+        </span>
+        <button type="submit" class="btn">
+          Login to your account</button>
       </form>
 
       <p class="description text-center">Don’t have an account? <span class="text-accent cursor-pointer"

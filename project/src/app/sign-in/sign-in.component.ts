@@ -4,11 +4,12 @@ import { Router, RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { User } from '../model/user.model';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule],
+  imports: [RouterLink, CommonModule, FormsModule, LoaderComponent],
   templateUrl: './sign-in.component.html',
   styles: ``
 })
@@ -21,7 +22,7 @@ export class SignInComponent implements OnDestroy {
   public error: boolean = false;
   public failedRegister: boolean = false;
   public userAlreadyExists: boolean = false;
-
+  public loading: boolean = false;
 
   constructor(
     private auth: AuthService,
@@ -31,6 +32,7 @@ export class SignInComponent implements OnDestroy {
   public register(): void {
     if (this.registerForm?.valid) {
       this.error = false;
+      this.loading = true;
 
       const user: User = {
         email: this.email,
@@ -48,6 +50,10 @@ export class SignInComponent implements OnDestroy {
             } else {
               this.failedRegister = true;
             }
+            this.loading = false;
+          },
+          complete: () => {
+            this.loading = false;
           }
         }
       )
